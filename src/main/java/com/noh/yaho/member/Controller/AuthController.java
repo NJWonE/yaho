@@ -42,7 +42,6 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<ResponseDTO> login() {
-        System.out.println(Authorities.ROLE_USER.name());
         Map<String, String> map = new HashMap<>();
         map.put("memberId", "test02");
         map.put("memberPw", "pass02");
