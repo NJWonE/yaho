@@ -10,7 +10,7 @@ spring:
   application:
     name: yaho
   config:
-    import: optional:configserver:http://localhost:8888
+    import: optional:configserver:http://54.180.100.61:8080
 
 management:
   endpoints:
