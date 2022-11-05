@@ -1,4 +1,4 @@
-package com.noh.yaho.exception;
+package com.noh.yaho.configuration.exception;
 
 /**
  * <pre>

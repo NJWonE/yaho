@@ -1,4 +1,4 @@
-package com.noh.yaho.member.Controller;
+package com.noh.yaho.member.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,12 +1,10 @@
-package com.noh.yaho.member.Controller;
+package com.noh.yaho.member.controller;
 
-import com.noh.yaho.common.ResponseDTO;
+import com.noh.yaho.common.dto.ResponseDTO;
 import com.noh.yaho.member.dto.Authorities;
-import com.noh.yaho.member.dto.MemberDTO;
 import com.noh.yaho.member.service.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;

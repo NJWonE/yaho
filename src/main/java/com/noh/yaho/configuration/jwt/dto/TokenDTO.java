@@ -1,4 +1,4 @@
-package com.noh.yaho.jwt.dto;
+package com.noh.yaho.configuration.jwt.dto;
 
 /**
  * <pre>
