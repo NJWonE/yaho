@@ -1,4 +1,4 @@
-package com.noh.yaho.common;
+package com.noh.yaho.common.dto;
 
 import org.springframework.http.HttpStatus;
 

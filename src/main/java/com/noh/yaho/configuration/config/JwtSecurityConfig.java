@@ -1,7 +1,7 @@
-package com.noh.yaho.configuration;
+package com.noh.yaho.configuration.config;
 
-import com.noh.yaho.jwt.JwtFilter;
-import com.noh.yaho.jwt.TokenProvider;
+import com.noh.yaho.configuration.jwt.JwtFilter;
+import com.noh.yaho.configuration.jwt.TokenProvider;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.DefaultSecurityFilterChain;

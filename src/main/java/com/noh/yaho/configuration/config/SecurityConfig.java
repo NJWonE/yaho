@@ -1,6 +1,6 @@
-package com.noh.yaho.configuration;
+package com.noh.yaho.configuration.config;
 
-import com.noh.yaho.jwt.TokenProvider;
+import com.noh.yaho.configuration.jwt.TokenProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -10,11 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-import java.util.Arrays;
 
 /**
  * <pre>
@@ -78,10 +73,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/v1/reviews/**").permitAll()
                 .antMatchers("/api/**").hasAnyRole("USER", "ADMIN")  // 나머지 API 는 전부 인증 필요
                 .and()
-                .cors()
-                .and()
+                .cors();
+//                .and()
                 // JwtFilter 를 addFilterBefore 로 등록했던 JwtSecurityConfig 클래스를 적용
-                .apply(new JwtSecurityConfig(tokenProvider));
+//                .apply(new JwtSecurityConfig(tokenProvider));
     }
 
 //    @Bean

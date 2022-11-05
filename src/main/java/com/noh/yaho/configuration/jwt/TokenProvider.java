@@ -1,22 +1,19 @@
-package com.noh.yaho.jwt;
+package com.noh.yaho.configuration.jwt;
 
-import com.noh.yaho.exception.TokenException;
-import com.noh.yaho.jwt.dto.TokenDTO;
+import com.noh.yaho.configuration.exception.TokenException;
+import com.noh.yaho.configuration.jwt.dto.TokenDTO;
 import com.noh.yaho.member.dto.Authorities;
 import com.noh.yaho.member.dto.MemberDTO;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import io.jsonwebtoken.security.Keys;
 import java.security.Key;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * <pre>
