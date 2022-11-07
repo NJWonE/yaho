@@ -36,22 +36,20 @@ public class Project {
     @Embedded
     private ProjectPeriod projectPeriod;
 
-    @ElementCollection
-    @CollectionTable(name="TBL_PROJECT_MEMBER_LIST", joinColumns = @JoinColumn(name="PROJECT_NO"))
-    @Column(name="MEMBER_NO")
-    private List<Integer> projectMemberList;
-
     @Column(name="IS_PROCESS", length = 1)
     private String isProcess = "Y";
+
+    @OneToMany
+    @JoinColumn(name="PROJECT_NO")
+    private List<ProjectMember> projectMemberLists;
 
     public Project() {
     }
 
-    public Project(String projectName, String projectSubject, int representativeMemberNo, ProjectPeriod projectPeriod, List<Integer> projectMemberList) {
+    public Project(String projectName, String projectSubject, int representativeMemberNo, ProjectPeriod projectPeriod) {
         this.projectName = projectName;
         this.projectSubject = projectSubject;
         this.representativeMemberNo = representativeMemberNo;
         this.projectPeriod = projectPeriod;
-        this.projectMemberList = projectMemberList;
     }
 }
