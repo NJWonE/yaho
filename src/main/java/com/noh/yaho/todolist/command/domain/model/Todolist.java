@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="TBL_TODOLIST")
@@ -43,11 +44,16 @@ public class Todolist {
     @Column(name="CONTENT")
     private String content;
 
-    public Todolist(int memberNo, int projectNo, Date dueDate, String title, String content) {
+    @ManyToOne
+    @JoinColumn(name="TAG_NO")
+    private Tag tag;
+
+    public Todolist(int memberNo, int projectNo, Date dueDate, String title, String content, Tag tag) {
         this.memberNo = memberNo;
         this.projectNo = projectNo;
         this.dueDate = dueDate;
         this.title = title;
         this.content = content;
+        this.tag = tag;
     }
 }
