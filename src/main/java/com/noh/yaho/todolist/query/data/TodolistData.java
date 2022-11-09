@@ -1,5 +1,6 @@
 package com.noh.yaho.todolist.query.data;
 
+import com.noh.yaho.todolist.command.domain.model.Tag;
 import lombok.*;
 
 import javax.persistence.*;
@@ -32,4 +33,9 @@ public class TodolistData {
 
     @Column(name="CONTENT")
     private String content;
+
+    @ManyToOne
+    @JoinColumn(name="TAG_NO")
+    private TagData tagNo;
+
 }
