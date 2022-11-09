@@ -6,6 +6,7 @@ import com.noh.yaho.todolist.command.application.service.TodolistRegistService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,10 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/todolist")
 public class TodolistCommandController {
 
-    TodolistRegistService todolistRegistService;
+    private final TodolistRegistService todolistRegistService;
 
     @PostMapping
-    public ResponseDTO registTodolist(TodolistDTO todolistDTO){
+    public ResponseDTO registTodolist(@RequestBody TodolistDTO todolistDTO){
         return new ResponseDTO(HttpStatus.OK, "todolist 생성 성공", todolistRegistService.registTodolist(todolistDTO));
     }
 }
