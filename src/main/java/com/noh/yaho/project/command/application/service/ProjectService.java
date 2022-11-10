@@ -3,12 +3,10 @@ package com.noh.yaho.project.command.application.service;
 import com.noh.yaho.project.command.application.dto.ProjectDTO;
 import com.noh.yaho.project.command.domain.model.Project;
 import com.noh.yaho.project.command.domain.model.ProjectMember;
-import com.noh.yaho.project.command.domain.model.ProjectMemberPK;
 import com.noh.yaho.project.command.domain.model.ProjectPeriod;
 import com.noh.yaho.project.command.domain.repository.ProjectMemberRepository;
 import com.noh.yaho.project.command.domain.repository.ProjectRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +17,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ProjectRegistService {
+public class ProjectService {
     private final ProjectRepository projectRepository;
     private final ProjectMemberRepository projectMemberRepository;
 
