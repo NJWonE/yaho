@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class TodolistRegistService {
+public class TodolistService {
 
     private final TodolistRepository todolistRepository;
     private final TagRepository tagRepository;

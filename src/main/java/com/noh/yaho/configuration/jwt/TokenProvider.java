@@ -2,8 +2,8 @@ package com.noh.yaho.configuration.jwt;
 
 import com.noh.yaho.configuration.exception.TokenException;
 import com.noh.yaho.configuration.jwt.dto.TokenDTO;
-import com.noh.yaho.member.dto.Authorities;
-import com.noh.yaho.member.dto.MemberDTO;
+import com.noh.yaho.member.command.application.dto.Authorities;
+import com.noh.yaho.member.command.application.dto.MemberDTOO;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -44,7 +44,7 @@ public class TokenProvider {
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public TokenDTO generateTokenDTO(MemberDTO member){
+    public TokenDTO generateTokenDTO(MemberDTOO member){
         int memberCode = member.getMemberCode();
         Claims claims = Jwts.claims();
         claims.put(AUTHORITIES_KEY, Authorities.ROLE_USER.name());
