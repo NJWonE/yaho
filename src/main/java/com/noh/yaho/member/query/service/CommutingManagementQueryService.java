@@ -1,6 +1,8 @@
 package com.noh.yaho.member.query.service;
 
 import com.noh.yaho.member.query.data.CommutingManagementData;
+import com.noh.yaho.member.query.data.WorkTimeData;
+import com.noh.yaho.member.query.dto.FindWorkTimeDataDTO;
 import com.noh.yaho.member.query.repository.CommutingManagementDataRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -33,5 +36,16 @@ public class CommutingManagementQueryService {
             throw new NullPointerException("출근 정보가 없습니다.");
         }
         return commutingManagementDataList.get(0).getCommutingManagementNo();
+    }
+
+    public List<WorkTimeData> selectWorkTime(FindWorkTimeDataDTO findWorkTimeDataDTO) {
+        List<CommutingManagementData> commutingManagementDataList = commutingManagementDataRepository.findByMemberNoAndAttendanceTimeBetween(findWorkTimeDataDTO.getMemberNo(), findWorkTimeDataDTO.getStartDate(),findWorkTimeDataDTO.getEndDate());
+        List<WorkTimeData> workTimeDataList = new ArrayList<>();
+        for(int i=0; i<commutingManagementDataList.size(); i++){
+            for(int j=0; j<commutingManagementDataList.get(i).getWorkTimeList().size(); j++){
+                workTimeDataList.add(commutingManagementDataList.get(i).getWorkTimeList().get(j));
+            }
+        }
+        return workTimeDataList;
     }
 }
