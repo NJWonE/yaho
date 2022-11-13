@@ -33,7 +33,7 @@ public class ProjectService {
         projectRepository.save(newProject);
 
         List<ProjectMember> list = new ArrayList<>();
-        // 동일한 회원번호로 프로젝트가 생성될 수 없다 나중에 리팩토링
+        // 동일한 회원번호가 리스트에 들어올 수 없다. 나중에 리팩토링
         for(int i=0; i<projectDTO.getProjectMemberList().size(); i++){
             ProjectMember newProjectMember = new ProjectMember(projectDTO.getProjectMemberList().get(i), newProject.getProjectNo());
             projectMemberRepository.save(newProjectMember);

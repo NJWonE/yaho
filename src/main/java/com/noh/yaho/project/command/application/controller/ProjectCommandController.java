@@ -16,8 +16,6 @@ public class ProjectCommandController {
 
     @PostMapping
     public ResponseDTO registProject(@RequestBody ProjectDTO projectDTO){
-        System.out.println("projectDTO = " + projectDTO);
         return new ResponseDTO(HttpStatus.OK, "프로젝트 생성 성공", projectService.registProject(projectDTO));
     }
-
 }
