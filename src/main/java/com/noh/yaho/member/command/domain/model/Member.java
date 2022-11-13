@@ -27,13 +27,14 @@ import java.util.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
+@ToString
 @SequenceGenerator(
         name="MEMBER_SEQUENCE",
         sequenceName = "SEQ_MEMBER_SEQUENCE",
         initialValue = 1,
         allocationSize = 1
 )
-public class Member implements UserDetails {
+public class Member{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_SEQUENCE")
@@ -68,44 +69,5 @@ public class Member implements UserDetails {
         this.phone = phone;
         this.email = email;
         this.address = address;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<SimpleGrantedAuthority> list = new ArrayList<>();
-        for(int i=0; i<memberAuthorities.size(); i++){
-            list.add(new SimpleGrantedAuthority(memberAuthorities.get(i).getAuthorityNo().getAuthorityName()));
-        }
-        return list;
-    }
-
-    @Override
-    public String getPassword() {
-        return this.memberPw;
-    }
-
-    @Override
-    public String getUsername() {
-        return this.memberId;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
     }
 }
