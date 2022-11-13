@@ -18,7 +18,6 @@ public class TodolistQueryService {
 
     private final TagDataRepository tagDataRepository;
 
-
     public List<TodolistData> selectTodolist(int memberNo, int projectNo, int tagNo) {
         List<TodolistData> todolistData = new ArrayList<>();
         if(memberNo!=0&&projectNo!=0&&tagNo!=0){

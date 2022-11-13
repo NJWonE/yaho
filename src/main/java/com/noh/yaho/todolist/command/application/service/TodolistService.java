@@ -18,9 +18,7 @@ public class TodolistService {
     public int registTodolist(TodolistDTO todolistDTO) {
         Todolist newTodolist = new Todolist(todolistDTO.getMemberNo(), todolistDTO.getProjectNo(),
                 todolistDTO.getDueDate(), todolistDTO.getTitle(), todolistDTO.getContent(), tagRepository.findById(todolistDTO.getTagNo()).get());
-        System.out.println("todolistDTO = " + newTodolist);
         todolistRepository.save(newTodolist);
-
         return newTodolist.getTodolistNo();
     }
 }
