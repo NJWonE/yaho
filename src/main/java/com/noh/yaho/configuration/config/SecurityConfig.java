@@ -10,6 +10,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 /**
  * <pre>
@@ -45,7 +50,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 외부에서 이미지 파일에 접근 가능 하도록 설정
                 .ignoring()
                 .antMatchers("/productimgs/**");
-
     }
 
     @Override
@@ -68,27 +72,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .antMatchers("/auth/**").permitAll()
-                .antMatchers("/api/v1/products/**").permitAll()
-                .antMatchers("/api/v1/reviews/**").permitAll()
-                .antMatchers("/api/**").hasAnyRole("USER", "ADMIN")  // 나머지 API 는 전부 인증 필요
+                .antMatchers("/members/**").permitAll()
+                .antMatchers("/**").hasAnyRole("USER", "ADMIN")  // 나머지 API 는 전부 인증 필요
                 .and()
-                .cors();
-//                .and()
-                // JwtFilter 를 addFilterBefore 로 등록했던 JwtSecurityConfig 클래스를 적용
-//                .apply(new JwtSecurityConfig(tokenProvider));
+                .cors()
+                .and()
+//                 JwtFilter 를 addFilterBefore 로 등록했던 JwtSecurityConfig 클래스를 적용
+                .apply(new JwtSecurityConfig(tokenProvider));
     }
 
-//    @Bean
-//    CorsConfigurationSource corsConfigurationSource(){
-//        CorsConfiguration configuration = new CorsConfiguration();
-//        // 로컬 React에서 오는 요청은 CORS 허용해준다.
-//        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000" ));
-//        configuration.setAllowedMethods(Arrays.asList("GET", "PUT", "POST", "DELETE"));
-//        configuration.setAllowedHeaders(Arrays.asList("Access-Control-Allow-Origin", "Content-Type"
-//        , "Access-Control-Allow-Headers", "Authorization", "X-Requested-With"));
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", configuration);
-//        return source;
-//    }
+    @Bean
+    CorsConfigurationSource corsConfigurationSource(){
+        CorsConfiguration configuration = new CorsConfiguration();
+        // 로컬 React에서 오는 요청은 CORS 허용해준다.
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5555" ));
+        configuration.setAllowedMethods(Arrays.asList("GET", "PUT", "POST", "DELETE"));
+        configuration.setAllowedHeaders(Arrays.asList("Access-Control-Allow-Origin", "Content-Type"
+        , "Access-Control-Allow-Headers", "Authorization", "X-Requested-With"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
 }

@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class TodolistRegistService {
+public class TodolistService {
 
     private final TodolistRepository todolistRepository;
     private final TagRepository tagRepository;
@@ -18,9 +18,7 @@ public class TodolistRegistService {
     public int registTodolist(TodolistDTO todolistDTO) {
         Todolist newTodolist = new Todolist(todolistDTO.getMemberNo(), todolistDTO.getProjectNo(),
                 todolistDTO.getDueDate(), todolistDTO.getTitle(), todolistDTO.getContent(), tagRepository.findById(todolistDTO.getTagNo()).get());
-        System.out.println("todolistDTO = " + newTodolist);
         todolistRepository.save(newTodolist);
-
         return newTodolist.getTodolistNo();
     }
 }

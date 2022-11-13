@@ -1,11 +1,9 @@
 package com.noh.yaho.todolist.query.controller;
 
 import com.noh.yaho.common.dto.ResponseDTO;
-import com.noh.yaho.todolist.query.exception.TodolistQueryException;
 import com.noh.yaho.todolist.query.service.TodolistQueryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

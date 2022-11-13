@@ -1,7 +1,11 @@
-package com.noh.yaho.member.service;
+package com.noh.yaho.member.command.application.service;
 
+import com.noh.yaho.member.command.domain.model.Member;
+import com.noh.yaho.member.command.domain.repository.MemberRepository;
 import com.noh.yaho.member.dto.Authorities;
-import com.noh.yaho.member.dto.MemberDTO;
+import com.noh.yaho.member.query.data.MemberData;
+import com.noh.yaho.member.query.repository.MemberDataRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -24,19 +28,16 @@ import java.util.Optional;
  * @see 참고할 class나 외부 url
  */
 @Service
+@RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
+    private final MemberDataRepository memberDataRepository;
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        MemberDTO memberDTO = new MemberDTO();
-        if(!username.equals(memberDTO.getMemberId())){
+    public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException {
+        Optional<MemberData> findMember = memberDataRepository.findByMemberId(memberId);
+        MemberData member = findMember.get();
+        if(member==null){
             throw new UsernameNotFoundException("아이디가 없음");
         }
-        addAuthorities(memberDTO);
-        return memberDTO;
-    }
-
-    private MemberDTO addAuthorities(MemberDTO member) {
-        member.setAuthorities(Arrays.asList(new SimpleGrantedAuthority(Authorities.ROLE_USER.name())));
         return member;
     }
 }
