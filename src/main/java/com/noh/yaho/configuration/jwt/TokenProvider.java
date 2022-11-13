@@ -2,8 +2,8 @@ package com.noh.yaho.configuration.jwt;
 
 import com.noh.yaho.configuration.exception.TokenException;
 import com.noh.yaho.configuration.jwt.dto.TokenDTO;
-import com.noh.yaho.member.command.application.dto.Authorities;
-import com.noh.yaho.member.command.application.dto.MemberDTOO;
+import com.noh.yaho.member.command.domain.model.Member;
+import com.noh.yaho.member.dto.Authorities;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -32,7 +32,7 @@ public class TokenProvider {
 
     private static final String AUTHORITIES_KEY = "auth";
     private static final String BEARER_TYPE = "bearer";
-    private static final String MEMBER_CODE = "memberCode";
+    private static final String MEMBER_NO = "memberNo";
     private static final long ACCESS_TOKEN_EXPIRE_TIME = 1000 * 60 * 30;
     private static Key key;
 
@@ -44,11 +44,11 @@ public class TokenProvider {
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public TokenDTO generateTokenDTO(MemberDTOO member){
-        int memberCode = member.getMemberCode();
+    public TokenDTO generateTokenDTO(Member member){
+        int memberNo = member.getMemberNo();
         Claims claims = Jwts.claims();
         claims.put(AUTHORITIES_KEY, Authorities.ROLE_USER.name());
-        claims.put(MEMBER_CODE, memberCode);
+        claims.put(MEMBER_NO, memberNo);
 
         long now = (new Date()).getTime();
 
@@ -66,14 +66,11 @@ public class TokenProvider {
         if (claims.get(AUTHORITIES_KEY) == null) {
             throw new RuntimeException("권한 정보가 없는 토큰입니다.");
         }
-
 //        Collection<? extends GrantedAuthority> authorities = Arrays.stream(claims.get(AUTHORITIES_KEY).toString().split(","))
 //                .map(SimpleGrantedAuthority::new)
 //                .collect(Collectors.toList());
-        UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserId(accessToken));
-
+        UserDetails userDetails = userDetailsService.loadUserByUsername(this.getMemberId(accessToken));
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
-
     }
     public boolean validateToken(String token) {
         try {
@@ -88,9 +85,8 @@ public class TokenProvider {
         } catch (IllegalArgumentException e) {
             throw new TokenException("JWT 토큰이 잘못되었습니다.");
         }
-
     }
-    public String getUserId(String accessToken) {
+    public String getMemberId(String accessToken) {
         return Jwts
                 .parserBuilder()
                 .setSigningKey(key)
@@ -99,7 +95,6 @@ public class TokenProvider {
                 .getBody()
                 .getSubject();
     }
-
     public Claims parseClaims(String accessToken){
         try{
             return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(accessToken).getBody();
