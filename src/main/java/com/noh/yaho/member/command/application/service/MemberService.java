@@ -1,4 +1,4 @@
-가package com.noh.yaho.member.command.application.service;
+package com.noh.yaho.member.command.application.service;
 
 import com.noh.yaho.configuration.jwt.TokenProvider;
 import com.noh.yaho.configuration.jwt.dto.TokenDTO;
