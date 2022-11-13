@@ -2,7 +2,7 @@ package com.noh.yaho.member.command.application.controller;
 
 import com.noh.yaho.common.dto.ResponseDTO;
 import com.noh.yaho.member.command.application.dto.MemberDTO;
-import com.noh.yaho.member.command.application.service.MemberDuplicateService;
+import com.noh.yaho.member.query.service.MemberDuplicateService;
 import com.noh.yaho.member.command.application.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class MemberCommandController {
     private final MemberService memberService;
-    private final MemberDuplicateService memberDuplicateService;
+
 
     @PostMapping
     public ResponseDTO registMember(@Validated @RequestBody MemberDTO memberDTO, BindingResult bindingResult){
@@ -29,8 +29,10 @@ public class MemberCommandController {
         return new ResponseDTO(HttpStatus.OK, "회원가입성공", memberService.registMember(memberDTO));
     }
 
-    @PostMapping("/checkId")
-    public ResponseDTO checkMemberId(@RequestBody String memberId){
-        return new ResponseDTO(HttpStatus.OK, "아이디중복검사결과", memberDuplicateService.checkMemberId(memberId));
+
+
+    @PostMapping("/login")
+    public ResponseDTO login(@RequestBody MemberDTO memberDTO){
+        return new ResponseDTO(HttpStatus.OK, "회원로그인성공/토큰발급", memberService.login(memberDTO));
     }
 }
