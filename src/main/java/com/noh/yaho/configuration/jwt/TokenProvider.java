@@ -3,7 +3,6 @@ package com.noh.yaho.configuration.jwt;
 import com.noh.yaho.configuration.exception.TokenException;
 import com.noh.yaho.configuration.jwt.dto.TokenDTO;
 import com.noh.yaho.member.command.domain.model.Member;
-import com.noh.yaho.member.dto.Authorities;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -47,7 +46,7 @@ public class TokenProvider {
     public TokenDTO generateTokenDTO(Member member){
         int memberNo = member.getMemberNo();
         Claims claims = Jwts.claims();
-        claims.put(AUTHORITIES_KEY, Authorities.ROLE_USER.name());
+        claims.put(AUTHORITIES_KEY, member.getMemberAuthorities().get(0).getAuthorityNo().getAuthorityName());
         claims.put(MEMBER_NO, memberNo);
 
         long now = (new Date()).getTime();

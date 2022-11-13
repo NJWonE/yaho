@@ -1,18 +1,15 @@
 package com.noh.yaho.member.command.application.service;
 
-import com.noh.yaho.member.command.domain.model.Member;
-import com.noh.yaho.member.command.domain.repository.MemberRepository;
-import com.noh.yaho.member.dto.Authorities;
+
 import com.noh.yaho.member.query.data.MemberData;
 import com.noh.yaho.member.query.repository.MemberDataRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.Optional;
 
 /**
