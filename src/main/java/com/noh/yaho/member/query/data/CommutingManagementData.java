@@ -34,6 +34,6 @@ public class CommutingManagementData {
 
     @JoinColumn(name="WORK_TIME_NO")
     @OneToMany
-    private List<WorkTime> workTimeList;
+    private List<WorkTimeData> workTimeList;
 
 }
