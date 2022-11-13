@@ -3,7 +3,6 @@ package com.noh.yaho.member.command.application.service;
 import com.noh.yaho.member.command.domain.model.Member;
 import com.noh.yaho.member.command.domain.repository.MemberRepository;
 import com.noh.yaho.member.dto.Authorities;
-import com.noh.yaho.member.command.application.dto.MemberDTOO;
 import com.noh.yaho.member.query.data.MemberData;
 import com.noh.yaho.member.query.repository.MemberDataRepository;
 import lombok.RequiredArgsConstructor;
