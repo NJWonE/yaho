@@ -1,9 +1,7 @@
 package com.noh.yaho.member.query.repository;
 
-import com.noh.yaho.member.command.domain.model.Member;
 import com.noh.yaho.member.query.data.MemberData;
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.util.List;
 import java.util.Optional;
 

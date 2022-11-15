@@ -6,7 +6,6 @@ import com.noh.yaho.member.query.service.MemberDuplicateService;
 import com.noh.yaho.member.query.service.MemberQueryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -24,7 +23,7 @@ public class MemberQueryController {
 
     @GetMapping("/auth/{memberId}")
     public ResponseDTO selectLoginMember(@PathVariable String memberId){
-        return new ResponseDTO(HttpStatus.OK, "인증확인로그인정보조회성공", memberQueryService.selectLoginMember(memberId));
+        return new ResponseDTO(HttpStatus.OK, "단일회원정보조회성공", memberQueryService.selectLoginMember(memberId));
     }
     @GetMapping("/checkId/{memberId}")
     public ResponseDTO checkMemberId(@PathVariable String memberId){

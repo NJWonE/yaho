@@ -2,8 +2,6 @@ package com.noh.yaho.project.command.application.dto;
 
 
 import lombok.Data;
-
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @Data

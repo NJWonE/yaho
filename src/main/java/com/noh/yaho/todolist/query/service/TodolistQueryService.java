@@ -6,7 +6,6 @@ import com.noh.yaho.todolist.query.repository.TagDataRepository;
 import com.noh.yaho.todolist.query.repository.TodolistDataRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
