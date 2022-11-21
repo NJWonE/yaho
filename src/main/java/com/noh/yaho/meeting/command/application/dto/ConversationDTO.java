@@ -8,6 +8,6 @@ import lombok.*;
 @AllArgsConstructor
 public class ConversationDTO {
     private String name;
-    private String data;
+    private String text;
     private java.util.Date time;
 }
