@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/meeting")
+@RequestMapping("/meetings")
 public class MeetingCommandController {
     private final MeetingService meetingService;
 
