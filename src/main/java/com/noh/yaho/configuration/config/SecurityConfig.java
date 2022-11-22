@@ -32,7 +32,6 @@ import java.util.Arrays;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final TokenProvider tokenProvider;
 
-
     public SecurityConfig(TokenProvider tokenProvider){
         this.tokenProvider = tokenProvider;
 
