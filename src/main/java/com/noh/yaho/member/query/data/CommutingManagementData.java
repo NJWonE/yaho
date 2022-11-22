@@ -1,9 +1,7 @@
 package com.noh.yaho.member.query.data;
 
-import com.noh.yaho.member.command.domain.model.WorkTime;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-
 import javax.persistence.*;
 import java.util.List;
 @Entity

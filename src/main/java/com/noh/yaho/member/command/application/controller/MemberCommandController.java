@@ -2,7 +2,6 @@ package com.noh.yaho.member.command.application.controller;
 
 import com.noh.yaho.common.dto.ResponseDTO;
 import com.noh.yaho.member.command.application.dto.MemberDTO;
-import com.noh.yaho.member.query.service.MemberDuplicateService;
 import com.noh.yaho.member.command.application.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

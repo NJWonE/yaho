@@ -3,7 +3,6 @@ package com.noh.yaho.project.command.domain.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Entity

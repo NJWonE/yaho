@@ -51,7 +51,7 @@ public class JwtFilter extends OncePerRequestFilter {
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
-            response.getWriter().write("에러임 암튼 에러임");
+            response.getWriter().write("인가에러");
         }
     }
 

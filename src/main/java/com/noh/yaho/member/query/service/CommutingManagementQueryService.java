@@ -6,14 +6,8 @@ import com.noh.yaho.member.query.dto.FindWorkTimeDataDTO;
 import com.noh.yaho.member.query.repository.CommutingManagementDataRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;

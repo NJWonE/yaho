@@ -14,7 +14,6 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class MemberQueryService {
-
     private final MemberDataRepository memberDataRepository;
     public List<MemberDataDTO> selectMember(String name) {
         List<MemberData> memberList = memberDataRepository.findByName(name);
@@ -25,7 +24,6 @@ public class MemberQueryService {
         }
         return memberDtoList;
     }
-
     public MemberData selectLoginMember(String memberId) {
         return memberDataRepository.findByMemberId(memberId).get();
     }

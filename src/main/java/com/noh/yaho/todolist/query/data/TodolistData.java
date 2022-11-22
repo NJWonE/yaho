@@ -1,8 +1,6 @@
 package com.noh.yaho.todolist.query.data;
 
-import com.noh.yaho.todolist.command.domain.model.Tag;
 import lombok.*;
-
 import javax.persistence.*;
 
 @Entity
