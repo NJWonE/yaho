@@ -39,7 +39,7 @@ public class    MeetingService {
         MultiValueMap<String, List<ConversationDTO>> body = new LinkedMultiValueMap<>();
         body.add("conversation", conversationDTOList);
 
-        String aiURL = "http://34.64.197.102:9090/summarize";
+        String aiURL = "http://34.64.197.102:9090/meeting";
 
         MeetingResultDTO meetingResultDTO = aiConnectionService.request(body, aiURL);
         String imageURL = awsSimpleStorageService.upload(meetingResultDTO.getGraph());
