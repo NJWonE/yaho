@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+
 @RestController
 @RequestMapping("/checklist")
 @RequiredArgsConstructor
@@ -22,5 +24,10 @@ public class ChecklistCommandController {
     @PutMapping
     public ResponseDTO updateChecklist(@RequestBody ChecklistDTO checklistDTO){
         return new ResponseDTO(HttpStatus.OK, "체크리스트 상태 변경 성공", checkListService.updateChecklist(checklistDTO));
+    }
+
+    @PostMapping("/dailyGraph")
+    public ResponseDTO createDailyGraph(@RequestBody ChecklistDTO checklistDTO) throws ParseException {
+        return new ResponseDTO(HttpStatus.OK, "체크리스트 당일 그래프 이미지 생성완료", checkListService.createDailyGraph(checklistDTO));
     }
 }
