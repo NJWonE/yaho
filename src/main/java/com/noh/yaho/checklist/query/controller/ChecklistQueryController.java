@@ -30,4 +30,10 @@ public class ChecklistQueryController {
         FindChecklistDTO findChecklistDTO = new FindChecklistDTO(memberNo, startDate, endDate);
         return new ResponseDTO(HttpStatus.OK, "체크리스트 조회성공", checklistQueryService.selectChecklist(findChecklistDTO));
     }
+
+    @GetMapping("/dailyGraph")
+    public ResponseDTO selectDailyGraph(@RequestParam(name="memberNo")int memberNo,
+                                        @RequestParam(name="createDate")@DateTimeFormat(pattern = "yyyy-MM-dd") Date createDate){
+        return new ResponseDTO(HttpStatus.OK, "체크리스트 당일 그래프 이미지 조회 성공", checklistQueryService.selectDailyGraph(memberNo,createDate));
+    }
 }
