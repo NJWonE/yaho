@@ -38,9 +38,8 @@ public class Checklist {
     @Column(name="IS_CHECKED")
     private String isChecked = "N";
 
-    public Checklist(String title, int memberNo, String isChecked) {
+    public Checklist(String title, int memberNo) {
         this.title = title;
         this.memberNo = memberNo;
-        this.isChecked = isChecked;
     }
 }
