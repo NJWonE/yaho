@@ -30,9 +30,9 @@ public class AiImageUpload implements AwsSimpleStorageService {
         ObjectMetadata objectMetadata = new ObjectMetadata();
         objectMetadata.setContentLength(byteImage.length);
 
-        String fileNameString = String.valueOf(getRandomUuid());
+        String fileNameString = String.valueOf(getRandomUuid())+".png";
 
-        amazonS3.putObject(new PutObjectRequest(bucket, fileNameString+".png",  new ByteArrayInputStream(byteImage), objectMetadata));
+        amazonS3.putObject(new PutObjectRequest(bucket, fileNameString,  new ByteArrayInputStream(byteImage), objectMetadata));
 
         return amazonS3.getUrl(bucket, fileNameString).toString();
     }
