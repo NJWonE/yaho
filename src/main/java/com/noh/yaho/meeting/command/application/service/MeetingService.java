@@ -5,7 +5,7 @@ import com.noh.yaho.meeting.command.application.dto.MeetingDTO;
 import com.noh.yaho.meeting.command.application.dto.MeetingResultDTO;
 import com.noh.yaho.meeting.command.domain.model.Meeting;
 import com.noh.yaho.meeting.command.domain.repository.MeetingRepository;
-import com.noh.yaho.meeting.command.domain.service.AiConnectionService;
+import com.noh.yaho.meeting.command.domain.service.MeetingAiConnectionService;
 import com.noh.yaho.meeting.command.domain.service.AwsSimpleStorageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ import java.util.List;
 @Transactional
 public class    MeetingService {
 
-    private final AiConnectionService aiConnectionService;
+    private final MeetingAiConnectionService meetingAiConnectionService;
     private final AwsSimpleStorageService awsSimpleStorageService;
     private final MeetingRepository meetingRepository;
 
@@ -41,7 +41,7 @@ public class    MeetingService {
 
         String aiURL = "http://34.64.197.102:9090/meeting";
 
-        MeetingResultDTO meetingResultDTO = aiConnectionService.request(body, aiURL);
+        MeetingResultDTO meetingResultDTO = meetingAiConnectionService.request(body, aiURL);
         String imageURL = awsSimpleStorageService.upload(meetingResultDTO.getGraph());
         Meeting newMeeting = new Meeting(meetingDTO.getProjectNo(), imageURL,
                 meetingResultDTO.getSummary(),

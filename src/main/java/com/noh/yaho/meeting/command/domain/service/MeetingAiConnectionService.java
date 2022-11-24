@@ -6,7 +6,7 @@ import org.springframework.util.MultiValueMap;
 
 import java.util.List;
 
-public interface AiConnectionService {
+public interface MeetingAiConnectionService {
 
     public MeetingResultDTO request(MultiValueMap<String, List<ConversationDTO>> body, String aiURL);
 }
