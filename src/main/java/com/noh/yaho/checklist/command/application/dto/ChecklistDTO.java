@@ -12,4 +12,5 @@ public class ChecklistDTO {
     private String isChecked;
     private int memberNo;
     private int checklistNo;
+    private int projectNo;
 }

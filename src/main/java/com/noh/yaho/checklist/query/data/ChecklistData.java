@@ -34,4 +34,7 @@ public class ChecklistData {
 
     @Column(name="IS_CHECKED")
     private String isChecked = "N";
+
+    @Column(name="PROJECT_NO")
+    private int projectNo;
 }

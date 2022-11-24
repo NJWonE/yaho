@@ -33,7 +33,7 @@ public class ChecklistService {
 
     @Transactional
     public int registChecklist(ChecklistDTO checkListDTO) {
-        Checklist newChecklist = new Checklist(checkListDTO.getTitle(), checkListDTO.getMemberNo());
+        Checklist newChecklist = new Checklist(checkListDTO.getTitle(), checkListDTO.getMemberNo(), checkListDTO.getProjectNo());
         checklistRepository.save(newChecklist);
         return newChecklist.getChecklistNo();
     }
