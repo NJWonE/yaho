@@ -1,5 +1,7 @@
 package com.noh.yaho.configuration.jwt.dto;
 
+import lombok.*;
+
 /**
  * <pre>
  * Class : Sample
@@ -12,10 +14,15 @@ package com.noh.yaho.configuration.jwt.dto;
  * @version 1.0(클래스의 버전)
  * @see 참고할 class나 외부 url
  */
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
 public class TokenDTO {
     private String grantType;
     private String accessToken;
     private long accessTokenExpiresIn;
+    private int memberNo;
 
     public TokenDTO() {
     }

@@ -57,7 +57,7 @@ public class TokenProvider {
                 .setExpiration(accessTokenExpiresIn)
                 .signWith(key, SignatureAlgorithm.HS512)
                 .compact();
-        return new TokenDTO(BEARER_TYPE, accessToken, accessTokenExpiresIn.getTime());
+        return new TokenDTO(BEARER_TYPE, accessToken, accessTokenExpiresIn.getTime(), memberNo);
     }
 
     public Authentication getAuthentication(String accessToken){
