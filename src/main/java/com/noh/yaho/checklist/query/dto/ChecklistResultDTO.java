@@ -10,4 +10,5 @@ import lombok.*;
 public class ChecklistResultDTO {
     private String title;
     private int checklistNo;
+    private String isChecked;
 }

@@ -34,10 +34,10 @@ public class ChecklistQueryService {
             Date startDateTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(strToday+" 00:00:00");
             Date endDateTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(strToday+" 23:59:59");
             List<ChecklistData> checklistDataList = checklistDataRepository.findByMemberNoAndProjectNoAndCreateDateBetween(findChecklistDTO.getMemberNo(), findChecklistDTO.getProjectNo(), startDateTime, endDateTime);
-            return checklistDataList.stream().map(checklist -> new ChecklistResultDTO(checklist.getTitle(), checklist.getChecklistNo())).collect(Collectors.toList());
+            return checklistDataList.stream().map(checklist -> new ChecklistResultDTO(checklist.getTitle(), checklist.getChecklistNo(), checklist.getIsChecked())).collect(Collectors.toList());
         }else{
             List<ChecklistData> checklistDataList = checklistDataRepository.findByMemberNoAndProjectNoAndCreateDateBetween(findChecklistDTO.getMemberNo(), findChecklistDTO.getProjectNo(), findChecklistDTO.getStartDate(), findChecklistDTO.getEndDate());
-            return checklistDataList.stream().map(checklist -> new ChecklistResultDTO(checklist.getTitle(), checklist.getChecklistNo())).collect(Collectors.toList());
+            return checklistDataList.stream().map(checklist -> new ChecklistResultDTO(checklist.getTitle(), checklist.getChecklistNo(), checklist.getIsChecked())).collect(Collectors.toList());
         }
     }
 
