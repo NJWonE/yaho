@@ -7,5 +7,5 @@ import java.util.Date;
 import java.util.List;
 
 public interface ChecklistDataRepository extends JpaRepository<ChecklistData, Integer> {
-    public List<ChecklistData> findByMemberNoAndCreateDateBetween(int memberNo, Date startDate, Date endDate);
+    public List<ChecklistData> findByMemberNoAndProjectNoAndCreateDateBetween(int memberNo, int projectNo, Date startDate, Date endDate);
 }

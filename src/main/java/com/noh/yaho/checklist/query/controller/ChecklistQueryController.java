@@ -22,12 +22,10 @@ public class ChecklistQueryController {
     private final ChecklistQueryService checklistQueryService;
 
     @GetMapping
-    public ResponseDTO selectChecklist(@RequestParam(name="memberNo")int memberNo,
+    public ResponseDTO selectChecklist(@RequestParam(name="memberNo")int memberNo, @RequestParam(name="projectNo")int projectNo,
                                        @RequestParam(name="startDate", required = false)@DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
                                        @RequestParam(name="endDate", required = false)@DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) throws ParseException {
-        System.out.println("startDate = " + startDate);
-        System.out.println("endDate = " + endDate);
-        FindChecklistDTO findChecklistDTO = new FindChecklistDTO(memberNo, startDate, endDate);
+        FindChecklistDTO findChecklistDTO = new FindChecklistDTO(memberNo, projectNo, startDate, endDate);
         return new ResponseDTO(HttpStatus.OK, "체크리스트 조회성공", checklistQueryService.selectChecklist(findChecklistDTO));
     }
 
