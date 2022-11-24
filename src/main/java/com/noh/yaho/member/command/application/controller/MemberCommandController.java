@@ -1,6 +1,7 @@
 package com.noh.yaho.member.command.application.controller;
 
 import com.noh.yaho.common.dto.ResponseDTO;
+import com.noh.yaho.member.command.application.dto.CheckFaceDTO;
 import com.noh.yaho.member.command.application.dto.MemberDTO;
 import com.noh.yaho.member.command.application.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,7 +19,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class MemberCommandController {
     private final MemberService memberService;
-
 
     @PostMapping
     public ResponseDTO registMember(@Validated @RequestBody MemberDTO memberDTO, BindingResult bindingResult){
@@ -28,10 +29,14 @@ public class MemberCommandController {
         return new ResponseDTO(HttpStatus.OK, "회원가입성공", memberService.registMember(memberDTO));
     }
 
-
-
     @PostMapping("/login")
     public ResponseDTO login(@RequestBody MemberDTO memberDTO){
         return new ResponseDTO(HttpStatus.OK, "회원로그인성공/토큰발급", memberService.login(memberDTO));
+    }
+
+    @PostMapping("/checkFace")
+    public ResponseDTO checkFace(@ModelAttribute CheckFaceDTO checkFaceDTO) throws IOException {
+        System.out.println("checkFaceDTO = " + checkFaceDTO);
+        return new ResponseDTO(HttpStatus.OK, "테스트 통과", memberService.checkFace(checkFaceDTO));
     }
 }
