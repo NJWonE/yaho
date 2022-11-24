@@ -2,7 +2,7 @@ package com.noh.yaho.meeting.command.infra.service;
 
 import com.noh.yaho.meeting.command.application.dto.ConversationDTO;
 import com.noh.yaho.meeting.command.application.dto.MeetingResultDTO;
-import com.noh.yaho.meeting.command.domain.service.AiConnectionService;
+import com.noh.yaho.meeting.command.domain.service.MeetingAiConnectionService;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.http.HttpEntity;
@@ -15,7 +15,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 @Service
-public class AiConnection implements AiConnectionService {
+public class MeetingAiConnection implements MeetingAiConnectionService {
 
     @Override
     public MeetingResultDTO request(MultiValueMap<String, List<ConversationDTO>> body, String aiURL){
