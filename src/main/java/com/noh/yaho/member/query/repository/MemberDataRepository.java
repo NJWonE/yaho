@@ -9,4 +9,5 @@ public interface MemberDataRepository extends JpaRepository <MemberData, Integer
     List<MemberData> findByName(String name);
     Optional<MemberData> findByMemberId(String memberId);
     boolean existsByMemberId(String MemberId);
+    List<MemberData> findByMemberNoIn(List<Integer> memberNoList);
 }

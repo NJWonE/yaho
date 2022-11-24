@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/members")
@@ -28,5 +30,10 @@ public class MemberQueryController {
     @GetMapping("/checkId/{memberId}")
     public ResponseDTO checkMemberId(@PathVariable String memberId){
         return new ResponseDTO(HttpStatus.OK, "아이디중복검사결과", memberDuplicateService.checkMemberId(memberId));
+    }
+
+    @GetMapping("/name/{memberNoList}")
+    public ResponseDTO selectMemberName(@PathVariable List<Integer> memberNoList){
+        return new ResponseDTO(HttpStatus.OK, "회원 이름 목록 조회 성공", memberQueryService.selectMemberName(memberNoList));
     }
 }

@@ -27,4 +27,11 @@ public class MemberQueryService {
     public MemberData selectLoginMember(String memberId) {
         return memberDataRepository.findByMemberId(memberId).get();
     }
+
+    public List<String> selectMemberName(List<Integer> memberNoList) {
+        List<String> memberNameList = new ArrayList<>();
+        List<MemberData> memberDataList = memberDataRepository.findByMemberNoIn(memberNoList);
+        memberDataList.forEach(memberData -> memberNameList.add(memberData.getName()));
+        return memberNameList;
+    }
 }
