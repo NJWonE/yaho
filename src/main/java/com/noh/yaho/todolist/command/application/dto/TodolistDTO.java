@@ -7,6 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class TodolistDTO {
+    private int todolistNo;
     private int memberNo;
     private int projectNo;
     private String title;

@@ -21,4 +21,12 @@ public class TodolistService {
         todolistRepository.save(newTodolist);
         return newTodolist.getTodolistNo();
     }
+
+    @Transactional
+    public int updateTodolist(TodolistDTO todolistDTO) {
+        Todolist findTodolist = todolistRepository.findById(todolistDTO.getTodolistNo()).get();
+        findTodolist.setTag(tagRepository.findById(2).get());
+        todolistRepository.save(findTodolist);
+        return findTodolist.getTodolistNo();
+    }
 }
