@@ -24,8 +24,10 @@ public class MemberQueryService {
         }
         return memberDtoList;
     }
-    public MemberData selectLoginMember(String memberId) {
-        return memberDataRepository.findByMemberId(memberId).get();
+    public MemberDataDTO selectLoginMember(int memberNo) {
+        MemberData memberData = memberDataRepository.findById(memberNo).get();
+        MemberDataDTO memberDataDTO = new MemberDataDTO(memberData.getMemberNo(), memberData.getMemberId(), memberData.getName());
+        return memberDataDTO;
     }
 
     public List<String> selectMemberName(List<Integer> memberNoList) {

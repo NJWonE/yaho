@@ -23,9 +23,9 @@ public class MemberQueryController {
         return new ResponseDTO(HttpStatus.OK, "회원조회성공", memberQueryService.selectMember(name));
     }
 
-    @GetMapping("/auth/{memberId}")
-    public ResponseDTO selectLoginMember(@PathVariable String memberId){
-        return new ResponseDTO(HttpStatus.OK, "단일회원정보조회성공", memberQueryService.selectLoginMember(memberId));
+    @GetMapping("/auth/{memberNo}")
+    public ResponseDTO selectLoginMember(@PathVariable int memberNo){
+        return new ResponseDTO(HttpStatus.OK, "단일회원정보조회성공", memberQueryService.selectLoginMember(memberNo));
     }
     @GetMapping("/checkId/{memberId}")
     public ResponseDTO checkMemberId(@PathVariable String memberId){
