@@ -58,6 +58,8 @@ public class Member{
     @JoinColumn(name="MEMBER_NO")
     private List<MemberRole> memberAuthorities;
 
+
+    private List<String> face;
     public Member(String memberId, String memberPw, String name, String phone, String email, AddressVO address) {
         this.memberId = memberId;
         this.memberPw = memberPw;

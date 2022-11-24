@@ -2,6 +2,7 @@ package com.noh.yaho.member.command.application.dto;
 
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
@@ -12,5 +13,5 @@ import java.util.List;
 @AllArgsConstructor
 public class CheckFaceResultDTO {
     private String faceType;
-    private List<Float> embd;
+    private String embd;
 }
