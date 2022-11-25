@@ -59,7 +59,7 @@ jobs:
         host: ${{ secrets.EC2_HOST }}
         username: ubuntu
         key: ${{ secrets.EC2_KEY }}
-        script: |
+        run: |
           docker rm -f ${{ secrets.DOCKER_REPO }}
           docker rmi -f ${{ secrets.DOCKER_REPO }}
           docker run -p 8088:8001 -d ${{ secrets.DOCKER_REPO }}
