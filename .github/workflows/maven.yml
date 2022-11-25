@@ -59,7 +59,7 @@ jobs:
         host: ${{ secrets.EC2_HOST }}
         username: ubuntu
         key: ${{ secrets.EC2_KEY }}
-        run: |
+        script: |
           docker stop $(docker ps -qa)
           docker rm $(docker ps -qa)
           docker rmi $(docker images -a)
