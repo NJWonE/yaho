@@ -61,7 +61,7 @@ jobs:
         key: ${{ secrets.EC2_KEY }}
         run: |
           docker rm -f ${{ secrets.DOCKER_REPO }}
-          docker rmi -f ${{ secrets.DOCKER_REPO }}
+          docker rmi ${{ secrets.DOCKER_REPO }}
           docker run -p 8088:8001 -d ${{ secrets.DOCKER_REPO }}
 
         
