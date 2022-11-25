@@ -7,6 +7,7 @@ import com.noh.yaho.member.query.dto.MemberDataDTO;
 import com.noh.yaho.member.query.repository.MemberDataRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberQueryService {
     private final MemberDataRepository memberDataRepository;
+    @Transactional
     public List<MemberDataDTO> selectMember(String name) {
         List<MemberData> memberList = memberDataRepository.findByName(name);
         List<MemberDataDTO> memberDtoList = new ArrayList<>();
@@ -24,12 +26,13 @@ public class MemberQueryService {
         }
         return memberDtoList;
     }
+    @Transactional
     public MemberDataDTO selectLoginMember(int memberNo) {
         MemberData memberData = memberDataRepository.findById(memberNo).get();
         MemberDataDTO memberDataDTO = new MemberDataDTO(memberData.getMemberNo(), memberData.getMemberId(), memberData.getName());
         return memberDataDTO;
     }
-
+    @Transactional
     public List<String> selectMemberName(List<Integer> memberNoList) {
         List<String> memberNameList = new ArrayList<>();
         List<MemberData> memberDataList = memberDataRepository.findByMemberNoIn(memberNoList);

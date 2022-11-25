@@ -18,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
@@ -37,16 +38,18 @@ public class MemberService {
     private final MemberAiConnectionService memberAiConnectionService;
     private final FaceRepository faceRepository;
 
+    @Transactional
     public Integer registMember(MemberDTO memberDTO) {
         Member newMember = new Member(memberDTO.getMemberId(), passwordEncoder.encode(memberDTO.getMemberPw()), memberDTO.getName(), memberDTO.getPhone(), memberDTO.getEmail(), new AddressVO(memberDTO.getAddress()));
         memberRepository.save(newMember);
         MemberRole newMemberRole = new MemberRole(newMember.getMemberNo(), memberAuthorityRepository.findById(1).get());
         memberRoleRepository.save(newMemberRole);
-        Face newFace = new Face(newMember.getMemberNo(), memberDTO.getFace().get("front"), memberDTO.getFace().get("left"), memberDTO.getFace().get("right"));
-        faceRepository.save(newFace);
+//        Face newFace = new Face(newMember.getMemberNo(), memberDTO.getFace().get("front"), memberDTO.getFace().get("left"), memberDTO.getFace().get("right"));
+//        faceRepository.save(newFace);
         return newMember.getMemberNo();
     }
 
+    @Transactional
     public TokenDTO login(MemberDTO memberDTO) {
         Member member = memberRepository.findByMemberId(memberDTO.getMemberId()).orElseThrow(()->new NullPointerException("아이디가 없습니다"));
         if(!passwordEncoder.matches(memberDTO.getMemberPw(), member.getMemberPw())){
@@ -55,6 +58,7 @@ public class MemberService {
         return tokenProvider.generateTokenDTO(member);
     }
 
+    @Transactional
     public CheckFaceResultDTO checkFace(CheckFaceDTO checkFaceDTO) throws IOException {
         MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
         body.add("faceType", checkFaceDTO.getFaceType());
