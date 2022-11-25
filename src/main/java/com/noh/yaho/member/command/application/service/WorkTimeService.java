@@ -6,6 +6,7 @@ import com.noh.yaho.member.command.domain.repository.CommutingManagementReposito
 import com.noh.yaho.member.command.domain.repository.WorkTimeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ public class WorkTimeService {
 
     private final WorkTimeRepository workTimeRepository;
     private final CommutingManagementRepository commutingManagementRepository;
+    @Transactional
     public int registWorkTime(WorkTimeDTO workTimeDTO) {
         List<WorkTime> workTimeList = commutingManagementRepository.findById(workTimeDTO.getCommutingManagementNo()).get().getWorkTimeList();
         if(workTimeList.isEmpty()){
