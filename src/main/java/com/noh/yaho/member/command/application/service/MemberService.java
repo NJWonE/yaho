@@ -49,7 +49,6 @@ public class MemberService {
         return newMember.getMemberNo();
     }
 
-    @Transactional
     public TokenDTO login(MemberDTO memberDTO) {
         Member member = memberRepository.findByMemberId(memberDTO.getMemberId()).orElseThrow(()->new NullPointerException("아이디가 없습니다"));
         if(!passwordEncoder.matches(memberDTO.getMemberPw(), member.getMemberPw())){
