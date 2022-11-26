@@ -18,8 +18,8 @@ public class WorkTimeController {
 
     private final WorkTimeService workTimeService;
 
-    @PostMapping
-    public ResponseDTO registWorkTime(@RequestBody @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) WorkTimeDTO workTimeDTO){
-        return new ResponseDTO(HttpStatus.OK, "업무시간 등록 성공", workTimeService.registWorkTime(workTimeDTO));
-    }
+//    @PostMapping
+//    public ResponseDTO registWorkTime(@RequestBody @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) WorkTimeDTO workTimeDTO){
+//        return new ResponseDTO(HttpStatus.OK, "업무시간 등록 성공", workTimeService.registWorkTime(workTimeDTO));
+//    }
 }

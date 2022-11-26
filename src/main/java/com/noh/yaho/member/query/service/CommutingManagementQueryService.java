@@ -20,7 +20,7 @@ import java.util.List;
 public class CommutingManagementQueryService {
     private final CommutingManagementDataRepository commutingManagementDataRepository;
     @Transactional
-    public int selectCommutingManagementNo(int memberNo) throws ParseException {
+    public List<CommutingManagementData> selectCommutingManagementNo(int memberNo) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         Calendar c1 = Calendar.getInstance();
@@ -32,7 +32,7 @@ public class CommutingManagementQueryService {
         if (commutingManagementDataList == null) {
             throw new NullPointerException("출근 정보가 없습니다.");
         }
-        return commutingManagementDataList.get(0).getCommutingManagementNo();
+        return commutingManagementDataList;
     }
     @Transactional
     public List<WorkTimeData> selectWorkTime(FindWorkTimeDataDTO findWorkTimeDataDTO) {
