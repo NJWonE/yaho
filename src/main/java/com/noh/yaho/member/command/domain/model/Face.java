@@ -29,12 +29,15 @@ public class Face {
     private int memberNo;
 
     @Column(name="FRONT")
+    @Lob
     private String front;
 
     @Column(name="LEFT")
+    @Lob
     private String left;
 
     @Column(name="RIGHT")
+    @Lob
     private String right;
 
     public Face(int memberNo, String front, String left, String right) {
