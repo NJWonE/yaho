@@ -10,5 +10,6 @@ import org.springframework.web.multipart.MultipartFile;
 @AllArgsConstructor
 public class DetectFaceDTO {
     private int memberNo;
+    private int commutingManagementNo;
     private MultipartFile image;
 }

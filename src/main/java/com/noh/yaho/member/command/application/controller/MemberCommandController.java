@@ -22,6 +22,7 @@ public class MemberCommandController {
 
     @PostMapping
     public ResponseDTO registMember(@Validated @RequestBody MemberDTO memberDTO, BindingResult bindingResult){
+        System.out.println("memberDTO.getFace().get(\"left\") = " + memberDTO.getFace().get("left"));
         if(bindingResult.hasErrors()){
             List<String> errors = bindingResult.getAllErrors().stream().map(e -> e.getDefaultMessage()).collect(Collectors.toList());
             return new ResponseDTO(HttpStatus.BAD_REQUEST, "입력한 정보가 올바르지 않습니다.", errors);

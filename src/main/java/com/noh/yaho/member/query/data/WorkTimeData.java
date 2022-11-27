@@ -22,4 +22,7 @@ public class WorkTimeData {
 
     @Column(name="WORK_END_TIME")
     private java.util.Date workEndTime;
+
+    @Column(name="COMMUTING_MANAGEMENT_NO")
+    private int commutingManagementNo;
 }

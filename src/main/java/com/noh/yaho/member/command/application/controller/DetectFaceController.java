@@ -6,7 +6,6 @@ import com.noh.yaho.member.command.application.dto.DetectFaceDTO;
 import com.noh.yaho.member.command.application.service.DetectFaceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,18 +21,15 @@ import java.io.IOException;
 public class DetectFaceController {
 
     private final DetectFaceService detectFaceService;
-
-
     @PostMapping
-    @Async
-    public void detectFace(@ModelAttribute DetectFaceDTO detectFaceDTO, HttpServletRequest request) throws IOException {
+    public ResponseDTO detectFace(@ModelAttribute DetectFaceDTO detectFaceDTO, HttpServletRequest request) throws IOException {
         HttpSession httpSession = request.getSession();
-        detectFaceService.detectFace(detectFaceDTO, httpSession);
+        System.out.println("detectFaceDTO = " + detectFaceDTO);
+        return new ResponseDTO(HttpStatus.OK, "안면인식기능조회성공", detectFaceService.detectFace(detectFaceDTO, httpSession));
     }
 
     @PostMapping("/checkFace")
     public ResponseDTO checkFace(@ModelAttribute CheckFaceDTO checkFaceDTO) throws IOException {
-        System.out.println("checkFaceDTO = " + checkFaceDTO);
         return new ResponseDTO(HttpStatus.OK, "테스트 통과", detectFaceService.checkFace(checkFaceDTO));
     }
 }

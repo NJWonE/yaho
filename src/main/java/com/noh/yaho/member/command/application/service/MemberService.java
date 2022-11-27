@@ -22,6 +22,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.Optional;
@@ -36,15 +38,14 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
     private final TokenProvider tokenProvider;
     private final FaceRepository faceRepository;
-
     @Transactional
     public Integer registMember(MemberDTO memberDTO) {
         Member newMember = new Member(memberDTO.getMemberId(), passwordEncoder.encode(memberDTO.getMemberPw()), memberDTO.getName(), memberDTO.getPhone(), memberDTO.getEmail(), new AddressVO(memberDTO.getAddress()));
         memberRepository.save(newMember);
         MemberRole newMemberRole = new MemberRole(newMember.getMemberNo(), memberAuthorityRepository.findById(1).get());
         memberRoleRepository.save(newMemberRole);
-//        Face newFace = new Face(newMember.getMemberNo(), memberDTO.getFace().get("front"), memberDTO.getFace().get("left"), memberDTO.getFace().get("right"));
-//        faceRepository.save(newFace);
+        Face newFace = new Face(newMember.getMemberNo(), memberDTO.getFace().get("front"), memberDTO.getFace().get("left"), memberDTO.getFace().get("right"));
+        faceRepository.save(newFace);
         return newMember.getMemberNo();
     }
 
