@@ -29,7 +29,7 @@ public class DetectFaceService {
     private final WorkTimeRepository workTimeRepository;
     private final MemberAiConnectionService memberAiConnectionService;
     @Transactional
-    public void detectFace(DetectFaceDTO detectFaceDTO, HttpSession httpSession) throws IOException {
+    public boolean detectFace(DetectFaceDTO detectFaceDTO, HttpSession httpSession) throws IOException {
         String detectFace = Base64.getEncoder().encodeToString(detectFaceDTO.getImage().getBytes());
         List<String> memberFaceList = new ArrayList<>();
         Face findFace = faceRepository.findById(detectFaceDTO.getMemberNo()).get();
@@ -45,10 +45,11 @@ public class DetectFaceService {
         if(check.isCheckFace()&&httpSession.getAttribute("workStartTime")==null){
             httpSession.setAttribute("workStartTime", new Date());
         }else if(check.isCheckFace()) {
-            WorkTime newWorkTime = new WorkTime(detectFaceDTO.getMemberNo(), new Date(httpSession.getAttribute("workStartTime").toString()), new Date());
+            WorkTime newWorkTime = new WorkTime(detectFaceDTO.getCommutingManagementNo(), new Date(httpSession.getAttribute("workStartTime").toString()), new Date());
             workTimeRepository.save(newWorkTime);
             httpSession.invalidate();
         }
+        return check.isCheckFace();
     }
     @Transactional
     public CheckFaceResultDTO checkFace(CheckFaceDTO checkFaceDTO) throws IOException {
