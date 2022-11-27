@@ -35,7 +35,6 @@ public class MemberService {
     private final MemberAuthorityRepository memberAuthorityRepository;
     private final PasswordEncoder passwordEncoder;
     private final TokenProvider tokenProvider;
-    private final MemberAiConnectionService memberAiConnectionService;
     private final FaceRepository faceRepository;
 
     @Transactional
@@ -57,13 +56,5 @@ public class MemberService {
         return tokenProvider.generateTokenDTO(member);
     }
 
-    @Transactional
-    public CheckFaceResultDTO checkFace(CheckFaceDTO checkFaceDTO) throws IOException {
-        MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
-        body.add("faceType", checkFaceDTO.getFaceType());
-        body.add("image", Base64.getEncoder().encodeToString(checkFaceDTO.getImage().getBytes()));
 
-        String aiURL = "http://34.64.121.28:9090/newface";
-        return memberAiConnectionService.request(body, aiURL);
-    }
 }

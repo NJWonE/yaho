@@ -34,9 +34,5 @@ public class MemberCommandController {
         return new ResponseDTO(HttpStatus.OK, "회원로그인성공/토큰발급", memberService.login(memberDTO));
     }
 
-    @PostMapping("/checkFace")
-    public ResponseDTO checkFace(@ModelAttribute CheckFaceDTO checkFaceDTO) throws IOException {
-        System.out.println("checkFaceDTO = " + checkFaceDTO);
-        return new ResponseDTO(HttpStatus.OK, "테스트 통과", memberService.checkFace(checkFaceDTO));
-    }
+
 }
