@@ -47,12 +47,12 @@ public class DetectFaceService {
 
         if(check.isCheckFace()&&httpSession.getAttribute("workStartTime")==null){
             httpSession.setAttribute("workStartTime", new Date());
-        }else if(check.isCheckFace()) {
+        }else if(!check.isCheckFace()&&httpSession.getAttribute("workStartTime")!=null) {
             WorkTime newWorkTime = new WorkTime(detectFaceDTO.getCommutingManagementNo(), new Date(httpSession.getAttribute("workStartTime").toString()), new Date());
             workTimeRepository.save(newWorkTime);
             httpSession.invalidate();
         }
-        return check.isCheckFace();
+            return check.isCheckFace();
     }
     @Transactional
     public CheckFaceResultDTO checkFace(CheckFaceDTO checkFaceDTO) throws IOException {
