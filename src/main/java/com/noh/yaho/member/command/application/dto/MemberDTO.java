@@ -38,8 +38,6 @@ public class MemberDTO {
 
     @NotBlank(message = "주소를 입력해주세요")
     private String address;
-
-//    @NotBlank(message = "얼굴 인식 값을 입력해주세요.")
-//    @Size(min = 3, max = 3, message = "정면 오른쪽 왼쪽 얼굴 값이 다 들어와야 합니다.")
-//    private Map<String, String> face;
+    
+    private Map<String, String> face;
 }

@@ -30,18 +30,21 @@ public class DetectFaceService {
     private final MemberAiConnectionService memberAiConnectionService;
     @Transactional
     public boolean detectFace(DetectFaceDTO detectFaceDTO, HttpSession httpSession) throws IOException {
-        String detectFace = Base64.getEncoder().encodeToString(detectFaceDTO.getImage().getBytes());
+        Face findFace = faceRepository.findByMemberNo(detectFaceDTO.getMemberNo()).get();
+
         List<String> memberFaceList = new ArrayList<>();
-        Face findFace = faceRepository.findById(detectFaceDTO.getMemberNo()).get();
-        memberFaceList.add(findFace.getFront());
-        memberFaceList.add(findFace.getLeft());
-        memberFaceList.add(findFace.getRight());
+        memberFaceList.add(findFace.getFrontFace());
+        memberFaceList.add(findFace.getLeftFace());
+        memberFaceList.add(findFace.getRightFace());
 
         MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
-        body.add("detectFace", detectFace);
-        body.add("findFace", memberFaceList);
-        String aiURL = "";
+        body.add("detectFace", Base64.getEncoder().encodeToString(detectFaceDTO.getImage().getBytes()));
+        body.add("memberFaceList", memberFaceList);
+
+        String aiURL = "http://34.64.121.28:9090/facedetect";
+
         CheckFaceResultDTO check = memberAiConnectionService.request(body, aiURL);
+
         if(check.isCheckFace()&&httpSession.getAttribute("workStartTime")==null){
             httpSession.setAttribute("workStartTime", new Date());
         }else if(check.isCheckFace()) {
@@ -56,7 +59,6 @@ public class DetectFaceService {
         MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
         body.add("faceType", checkFaceDTO.getFaceType());
         body.add("image", Base64.getEncoder().encodeToString(checkFaceDTO.getImage().getBytes()));
-
         String aiURL = "http://34.64.121.28:9090/newface";
         return memberAiConnectionService.request(body, aiURL);
     }

@@ -24,6 +24,7 @@ public class DetectFaceController {
     @PostMapping
     public ResponseDTO detectFace(@ModelAttribute DetectFaceDTO detectFaceDTO, HttpServletRequest request) throws IOException {
         HttpSession httpSession = request.getSession();
+        System.out.println("detectFaceDTO = " + detectFaceDTO);
         return new ResponseDTO(HttpStatus.OK, "안면인식기능조회성공", detectFaceService.detectFace(detectFaceDTO, httpSession));
     }
 

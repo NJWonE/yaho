@@ -28,22 +28,22 @@ public class Face {
     @Column(name="MEMBER_NO")
     private int memberNo;
 
-    @Column(name="FRONT")
+    @Column(name="FRONT_FACE")
     @Lob
-    private String front;
+    private String frontFace;
 
-    @Column(name="LEFT")
+    @Column(name="LEFT_FACE")
     @Lob
-    private String left;
+    private String leftFace;
 
-    @Column(name="RIGHT")
+    @Column(name="RIGHT_FACE")
     @Lob
-    private String right;
+    private String rightFace;
 
-    public Face(int memberNo, String front, String left, String right) {
+    public Face(int memberNo, String frontFace, String leftFace, String rightFace) {
         this.memberNo = memberNo;
-        this.front = front;
-        this.left = left;
-        this.right = right;
+        this.frontFace = frontFace;
+        this.leftFace = leftFace;
+        this.rightFace = rightFace;
     }
 }
