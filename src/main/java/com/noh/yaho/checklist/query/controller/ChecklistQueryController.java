@@ -30,8 +30,8 @@ public class ChecklistQueryController {
     }
 
     @GetMapping("/dailyGraph")
-    public ResponseDTO selectDailyGraph(@RequestParam(name="memberNo")int memberNo,
+    public ResponseDTO selectDailyGraph(@RequestParam(name="memberNo")int memberNo, @RequestParam(name="projectNo")int projectNo,
                                         @RequestParam(name="createDate")@DateTimeFormat(pattern = "yyyy-MM-dd") Date createDate) throws ParseException {
-        return new ResponseDTO(HttpStatus.OK, "체크리스트 당일 그래프 이미지 조회 성공", checklistQueryService.selectDailyGraph(memberNo,createDate));
+        return new ResponseDTO(HttpStatus.OK, "체크리스트 당일 그래프 이미지 조회 성공", checklistQueryService.selectDailyGraph(memberNo, projectNo, createDate));
     }
 }

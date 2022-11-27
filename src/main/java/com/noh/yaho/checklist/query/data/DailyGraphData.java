@@ -26,6 +26,9 @@ public class DailyGraphData {
     @CreationTimestamp
     private java.util.Date createDate;
 
+    @Column(name="PROJECT_NO")
+    private int projectNo;
+
     @Column(name="IMAGE_URL")
     private String imageURL;
 }

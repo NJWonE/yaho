@@ -49,6 +49,7 @@ public class ChecklistService {
 
     public int createDailyGraph(ChecklistDTO checklistDTO) throws ParseException {
         int memberNo = checklistDTO.getMemberNo();
+        int projectNo = checklistDTO.getProjectNo();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calendar = Calendar.getInstance();
 
@@ -56,9 +57,11 @@ public class ChecklistService {
         Date startDateTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(today+" 00:00:00");
         Date endDateTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(today+" 23:59:59");
 
-        List<Checklist> checklists = checklistRepository.findByMemberNoAndCreateDateBetween(memberNo, startDateTime, endDateTime);
+        List<Checklist> checklists = checklistRepository.findByMemberNoAndProjectNoAndCreateDateBetween(memberNo, projectNo, startDateTime, endDateTime);
         int totalCount = checklists.size();
         int checkCount = checklists.stream().filter(item -> item.getIsChecked().equals("Y")).collect(Collectors.toList()).size();
+        System.out.println("checkCount = " + checkCount);
+        System.out.println("totalCount = " + totalCount);
         MultiValueMap<String, Integer> body = new LinkedMultiValueMap<>();
 
         String aiURL = "http://34.64.121.28:9090/daily";
@@ -66,7 +69,7 @@ public class ChecklistService {
         body.add("checkCount", checkCount);
         String responseImage = aiConnectionCheckService.createDailyGraph(body, aiURL).getGraph();
         String imageURL = checkAwsSimpleStorageService.upload(responseImage);
-        DailyGraph newDailyGraph = new DailyGraph(memberNo, imageURL);
+        DailyGraph newDailyGraph = new DailyGraph(memberNo, projectNo, imageURL);
         dailyGraphRepository.save(newDailyGraph);
         return newDailyGraph.getDailyGraphNo();
     }

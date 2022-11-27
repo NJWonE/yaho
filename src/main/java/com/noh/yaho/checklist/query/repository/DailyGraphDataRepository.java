@@ -7,5 +7,5 @@ import java.util.Date;
 import java.util.Optional;
 
 public interface DailyGraphDataRepository extends JpaRepository<DailyGraphData, Integer> {
-    public Optional<DailyGraphData> findByMemberNoAndCreateDateBetween(int MemberNo, Date startDate, Date endDate);
+    public Optional<DailyGraphData> findByMemberNoAndProjectNoAndCreateDateBetween(int MemberNo, int ProjectNo, Date startDate, Date endDate);
 }

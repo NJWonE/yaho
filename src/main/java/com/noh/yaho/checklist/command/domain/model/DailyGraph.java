@@ -33,11 +33,15 @@ public class DailyGraph {
     @CreationTimestamp
     private java.util.Date createDate;
 
+    @Column(name="PROJECT_NO")
+    private int projectNo;
+
     @Column(name="IMAGE_URL")
     private String imageURL;
 
-    public DailyGraph(int memberNo, String imageURL) {
+    public DailyGraph(int memberNo, int projectNo, String imageURL) {
         this.memberNo = memberNo;
+        this.projectNo = projectNo;
         this.imageURL = imageURL;
     }
 }
