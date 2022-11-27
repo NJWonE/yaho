@@ -16,15 +16,15 @@ public class WorkTimeService {
 
     private final WorkTimeRepository workTimeRepository;
     private final CommutingManagementRepository commutingManagementRepository;
-    @Transactional
-    public int registWorkTime(WorkTimeDTO workTimeDTO) {
-        List<WorkTime> workTimeList = commutingManagementRepository.findById(workTimeDTO.getCommutingManagementNo()).get().getWorkTimeList();
-        if(workTimeList.isEmpty()){
-            new RuntimeException("출근기록이 없습니다.");
-        }
-        WorkTime newWorkTime = new WorkTime(workTimeDTO.getWorkStartTime(), workTimeDTO.getWorkEndTime());
-        workTimeRepository.save(newWorkTime);
-        workTimeList.add(newWorkTime);
-        return newWorkTime.getWorkTimeNo();
-    }
+//    @Transactional
+//    public int registWorkTime(WorkTimeDTO workTimeDTO) {
+//        List<WorkTime> workTimeList = commutingManagementRepository.findById(workTimeDTO.getCommutingManagementNo()).get().getWorkTimeList();
+//        if(workTimeList.isEmpty()){
+//            new RuntimeException("출근기록이 없습니다.");
+//        }
+//        WorkTime newWorkTime = new WorkTime(workTimeDTO.getWorkStartTime(), workTimeDTO.getWorkEndTime());
+//        workTimeRepository.save(newWorkTime);
+//        workTimeList.add(newWorkTime);
+//        return newWorkTime.getWorkTimeNo();
+//    }
 }

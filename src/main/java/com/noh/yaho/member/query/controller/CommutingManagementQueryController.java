@@ -18,16 +18,14 @@ public class CommutingManagementQueryController {
 
     private final CommutingManagementQueryService commutingManagementQueryService;
 
-    @GetMapping("/{memberNo}")
-    public ResponseDTO selectCommutingManagementNo(@PathVariable("memberNo") int memberNo) throws ParseException {
+    @GetMapping("/number")
+    public ResponseDTO selectCommutingManagementNo(@RequestParam("memberNo") int memberNo) throws ParseException {
         return new ResponseDTO(HttpStatus.OK, "출근관리넘버조회성공", commutingManagementQueryService.selectCommutingManagementNo(memberNo));
     }
 
-    @GetMapping("/workTime")
-    public ResponseDTO selectWorkTime(@RequestParam(name="memberId")int memberNo, @RequestParam(name="startDate")@DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
-                                      @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam(name="endDate")Date endDate){
-        System.out.println("startDate = " + startDate);
-        FindWorkTimeDataDTO findWorkTimeDataDTO = new FindWorkTimeDataDTO(memberNo, startDate, endDate);
-        return new ResponseDTO(HttpStatus.OK, "업무시간조회성공", commutingManagementQueryService.selectWorkTime(findWorkTimeDataDTO));
+    @GetMapping
+    public ResponseDTO selectCommutingManagement(@RequestParam(name="memberNo")int memberNo) throws ParseException {
+        return new ResponseDTO(HttpStatus.OK, "업무시간조회성공", commutingManagementQueryService.selectCommutingManagement(memberNo));
     }
+
 }
