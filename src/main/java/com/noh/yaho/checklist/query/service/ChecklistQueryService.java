@@ -41,12 +41,12 @@ public class ChecklistQueryService {
         }
     }
 
-    public String selectDailyGraph(int memberNo, Date createDate) throws ParseException {
+    public String selectDailyGraph(int memberNo, int projectNo, Date createDate) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String today = sdf.format(createDate);
         Date startDateTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(today+" 00:00:00");
         Date endDateTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(today+" 23:59:59");
-        DailyGraphData dailyGraphData = dailyGraphDataRepository.findByMemberNoAndCreateDateBetween(memberNo, startDateTime, endDateTime).get();
+        DailyGraphData dailyGraphData = dailyGraphDataRepository.findByMemberNoAndProjectNoAndCreateDateBetween(memberNo, projectNo, startDateTime, endDateTime).get();
         return dailyGraphData.getImageURL();
     }
 }
