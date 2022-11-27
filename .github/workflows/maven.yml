@@ -17,7 +17,7 @@ jobs:
       - name: Set yml
         uses: microsoft/variable-substitution@v1
         with:
-          files: ./src/main/java/resources/application.yml
+          files: ./src/main/resources/application.yml
         env:
           spring.config.import: ${{ secrets.CONFIG_IP }}
           
