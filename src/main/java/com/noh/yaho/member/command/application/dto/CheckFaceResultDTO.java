@@ -14,4 +14,5 @@ import java.util.List;
 public class CheckFaceResultDTO {
     private String faceType;
     private String embd;
+    private boolean checkFace;
 }
