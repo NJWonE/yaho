@@ -1,6 +1,7 @@
 package com.noh.yaho.meeting.query.controller;
 
 import com.noh.yaho.common.dto.ResponseDTO;
+import com.noh.yaho.meeting.query.dto.MeetingResultDTO;
 import com.noh.yaho.meeting.query.service.MeetingQueryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/meetings")
 public class MeetingQueryController {
     private final MeetingQueryService meetingQueryService;
+
+//    @GetMapping("/emergency")
+//    public ResponseDTO selectMeetings(){
+//        MeetingResultDTO meetingResultDTO = new MeetingResultDTO();
+//
+//        return new ResponseDTO(HttpStatus.OK, "조회성공",);
+//    }
 
     @GetMapping("/{meetingNo}")
     public ResponseDTO selectMeeting(@PathVariable("meetingNo") int meetingNo){

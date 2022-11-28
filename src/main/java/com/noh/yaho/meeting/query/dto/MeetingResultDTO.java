@@ -1,4 +1,4 @@
-package com.noh.yaho.meeting.command.application.dto;
+package com.noh.yaho.meeting.query.dto;
 
 import lombok.*;
 

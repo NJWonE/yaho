@@ -29,9 +29,6 @@ public class Project {
     @Column(name="PROJECT_SUBJECT", length = 100)
     private String projectSubject;
 
-    @Column(name="REPRESENTATIVE_MEMBER_NO", length = 10)
-    private int representativeMemberNo;
-
     @Embedded
     private ProjectPeriod projectPeriod;
 
@@ -45,10 +42,9 @@ public class Project {
     public Project() {
     }
 
-    public Project(String projectName, String projectSubject, int representativeMemberNo, ProjectPeriod projectPeriod) {
+    public Project(String projectName, String projectSubject, ProjectPeriod projectPeriod) {
         this.projectName = projectName;
         this.projectSubject = projectSubject;
-        this.representativeMemberNo = representativeMemberNo;
         this.projectPeriod = projectPeriod;
     }
 }
