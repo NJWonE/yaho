@@ -40,10 +40,6 @@ public class CommutingManagement {
     @Column(name="MEMBER_NO")
     private int memberNo;
 
-    @JoinColumn(name="WORK_TIME_NO")
-    @OneToMany
-    private List<WorkTime> workTimeList;
-
     public CommutingManagement(Date attendanceTime, int memberNo) {
         this.attendanceTime = attendanceTime;
         this.memberNo = memberNo;

@@ -34,17 +34,17 @@ public class CommutingManagementQueryService {
         }
         return commutingManagementDataList.get(0).getCommutingManagementNo();
     }
-    @Transactional
-    public List<WorkTimeData> selectWorkTime(FindWorkTimeDataDTO findWorkTimeDataDTO) {
-        List<CommutingManagementData> commutingManagementDataList = commutingManagementDataRepository.findByMemberNoAndAttendanceTimeBetween(findWorkTimeDataDTO.getMemberNo(), findWorkTimeDataDTO.getStartDate(),findWorkTimeDataDTO.getEndDate());
-        List<WorkTimeData> workTimeDataList = new ArrayList<>();
-        for(int i=0; i<commutingManagementDataList.size(); i++){
-            for(int j=0; j<commutingManagementDataList.get(i).getWorkTimeList().size(); j++){
-                workTimeDataList.add(commutingManagementDataList.get(i).getWorkTimeList().get(j));
-            }
-        }
-        return workTimeDataList;
-    }
+//    @Transactional
+//    public List<WorkTimeData> selectWorkTime(FindWorkTimeDataDTO findWorkTimeDataDTO) {
+//        List<CommutingManagementData> commutingManagementDataList = commutingManagementDataRepository.findByMemberNoAndAttendanceTimeBetween(findWorkTimeDataDTO.getMemberNo(), findWorkTimeDataDTO.getStartDate(),findWorkTimeDataDTO.getEndDate());
+//        List<WorkTimeData> workTimeDataList = new ArrayList<>();
+//        for(int i=0; i<commutingManagementDataList.size(); i++){
+//            for(int j=0; j<commutingManagementDataList.get(i).getWorkTimeList().size(); j++){
+//                workTimeDataList.add(commutingManagementDataList.get(i).getWorkTimeList().get(j));
+//            }
+//        }
+//        return workTimeDataList;
+//    }
 
     public Object selectCommutingManagement(int memberNo) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
