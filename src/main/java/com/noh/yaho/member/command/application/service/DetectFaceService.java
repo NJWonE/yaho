@@ -44,11 +44,11 @@ public class DetectFaceService {
         String aiURL = "http://34.64.121.28:9090/facedetect";
 
         CheckFaceResultDTO check = memberAiConnectionService.request(body, aiURL);
-
-        if(check.isCheckFace()&&httpSession.getAttribute("workStartTime")==null){
+        Date sessionDate = (Date) httpSession.getAttribute("workStartTime");
+        if(check.isCheckFace()&&sessionDate==null){
             httpSession.setAttribute("workStartTime", new Date());
-        }else if(!check.isCheckFace()&&httpSession.getAttribute("workStartTime")!=null) {
-            WorkTime newWorkTime = new WorkTime(detectFaceDTO.getCommutingManagementNo(), new Date(httpSession.getAttribute("workStartTime").toString()), new Date());
+        }else if(!check.isCheckFace()&&sessionDate!=null) {
+            WorkTime newWorkTime = new WorkTime(detectFaceDTO.getCommutingManagementNo(), sessionDate , new Date());
             workTimeRepository.save(newWorkTime);
             httpSession.invalidate();
         }
