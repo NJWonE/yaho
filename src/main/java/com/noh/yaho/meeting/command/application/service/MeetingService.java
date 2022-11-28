@@ -2,7 +2,7 @@ package com.noh.yaho.meeting.command.application.service;
 
 import com.noh.yaho.meeting.command.application.dto.ConversationDTO;
 import com.noh.yaho.meeting.command.application.dto.MeetingDTO;
-import com.noh.yaho.meeting.command.application.dto.MeetingResultDTO;
+import com.noh.yaho.meeting.query.dto.MeetingResultDTO;
 import com.noh.yaho.meeting.command.domain.model.Meeting;
 import com.noh.yaho.meeting.command.domain.repository.MeetingRepository;
 import com.noh.yaho.meeting.command.domain.service.MeetingAiConnectionService;
@@ -39,7 +39,7 @@ public class    MeetingService {
         MultiValueMap<String, List<ConversationDTO>> body = new LinkedMultiValueMap<>();
         body.add("conversation", conversationDTOList);
 
-        String aiURL = "http://34.64.197.102:9090/meeting";
+        String aiURL = "http://34.64.121.28:9090/meeting";
 
         MeetingResultDTO meetingResultDTO = meetingAiConnectionService.request(body, aiURL);
         String imageURL = awsSimpleStorageService.upload(meetingResultDTO.getGraph());

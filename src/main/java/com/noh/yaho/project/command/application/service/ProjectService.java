@@ -28,7 +28,6 @@ public class ProjectService {
     public Integer registProject(ProjectDTO projectDTO){
         Project newProject = new Project(projectDTO.getProjectName(),
                 projectDTO.getProjectSubject(),
-                projectDTO.getRepresentativeMemberNo(),
                 new ProjectPeriod(projectDTO.getStartDate(), projectDTO.getEndDate()));
         projectRepository.save(newProject);
 
