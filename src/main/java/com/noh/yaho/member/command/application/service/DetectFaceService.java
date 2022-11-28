@@ -48,7 +48,7 @@ public class DetectFaceService {
         if(check.isCheckFace()&&sessionDate==null){
             httpSession.setAttribute("workStartTime", new Date());
         }else if(!check.isCheckFace()&&sessionDate!=null) {
-            WorkTime newWorkTime = new WorkTime(detectFaceDTO.getCommutingManagementNo(), sessionDate , new Date());
+            WorkTime newWorkTime = new WorkTime(detectFaceDTO.getMemberNo(), sessionDate , new Date());
             workTimeRepository.save(newWorkTime);
             httpSession.invalidate();
         }

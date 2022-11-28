@@ -33,11 +33,11 @@ public class WorkTime {
     @Column(name="WORK_END_TIME")
     private java.util.Date workEndTime;
 
-    @Column(name="COMMUTING_MANAGEMENT_NO")
-    private int commutingManagementNo;
+    @Column(name="MEMBER_NO")
+    private int memberNo;
 
-    public WorkTime(int commutingManagementNo, Date workStartTime, Date workEndTime) {
-        this.commutingManagementNo = commutingManagementNo;
+    public WorkTime(int memberNo, Date workStartTime, Date workEndTime) {
+        this.memberNo = memberNo;
         this.workStartTime = workStartTime;
         this.workEndTime = workEndTime;
     }
