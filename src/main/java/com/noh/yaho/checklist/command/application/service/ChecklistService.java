@@ -7,6 +7,7 @@ import com.noh.yaho.checklist.command.domain.repository.ChecklistRepository;
 import com.noh.yaho.checklist.command.domain.repository.DailyGraphRepository;
 import com.noh.yaho.checklist.command.domain.service.AiConnectionCheckService;
 import com.noh.yaho.checklist.command.domain.service.CheckAwsSimpleStorageService;
+import com.noh.yaho.checklist.command.infra.service.AiDailyGraphUpload;
 import com.noh.yaho.checklist.query.data.ChecklistData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,10 +17,7 @@ import org.springframework.util.MultiValueMap;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -60,17 +58,25 @@ public class ChecklistService {
         List<Checklist> checklists = checklistRepository.findByMemberNoAndProjectNoAndCreateDateBetween(memberNo, projectNo, startDateTime, endDateTime);
         int totalCount = checklists.size();
         int checkCount = checklists.stream().filter(item -> item.getIsChecked().equals("Y")).collect(Collectors.toList()).size();
-        System.out.println("checkCount = " + checkCount);
-        System.out.println("totalCount = " + totalCount);
         MultiValueMap<String, Integer> body = new LinkedMultiValueMap<>();
-
         String aiURL = "http://34.64.121.28:9090/daily";
         body.add("totalCount", totalCount);
         body.add("checkCount", checkCount);
-        String responseImage = aiConnectionCheckService.createDailyGraph(body, aiURL).getGraph();
-        String imageURL = checkAwsSimpleStorageService.upload(responseImage);
-        DailyGraph newDailyGraph = new DailyGraph(memberNo, projectNo, imageURL);
-        dailyGraphRepository.save(newDailyGraph);
-        return newDailyGraph.getDailyGraphNo();
+
+        Optional<DailyGraph> dailyGraph = dailyGraphRepository.findByMemberNoAndProjectNoAndCreateDateBetween(memberNo, projectNo, startDateTime, endDateTime);
+        if(dailyGraph.isEmpty()){
+            String responseImage = aiConnectionCheckService.createDailyGraph(body, aiURL).getGraph();
+            String imageURL = checkAwsSimpleStorageService.upload(responseImage);
+            DailyGraph newDailyGraph = new DailyGraph(memberNo, projectNo, imageURL);
+            dailyGraphRepository.save(newDailyGraph);
+            return newDailyGraph.getDailyGraphNo();
+        }else{
+            checkAwsSimpleStorageService.delete(dailyGraph.get().getImageURL());
+            String responseImage = aiConnectionCheckService.createDailyGraph(body, aiURL).getGraph();
+            String imageURL = checkAwsSimpleStorageService.upload(responseImage);
+            dailyGraph.get().setImageURL(imageURL);
+            dailyGraphRepository.save(dailyGraph.get());
+            return dailyGraph.get().getDailyGraphNo();
+        }
     }
 }

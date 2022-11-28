@@ -1,6 +1,7 @@
 package com.noh.yaho.checklist.command.infra.service;
 
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.noh.yaho.checklist.command.domain.service.CheckAwsSimpleStorageService;
@@ -31,6 +32,11 @@ public class AiDailyGraphUpload implements CheckAwsSimpleStorageService {
         amazonS3.putObject(new PutObjectRequest(bucket, fileNameString, new ByteArrayInputStream(byteImage), objectMetadata));
 
         return amazonS3.getUrl(bucket, fileNameString).toString();
+    }
+    @Override
+    public void delete(String url){
+        DeleteObjectRequest deleteObjectRequest = new DeleteObjectRequest(bucket, url);
+        amazonS3.deleteObject(deleteObjectRequest);
     }
     private static UUID getRandomUuid() {
         return UUID.randomUUID();
