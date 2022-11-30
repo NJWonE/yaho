@@ -36,8 +36,7 @@ public class Member{
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_SEQUENCE")
     @Column(name="MEMBER_NO")
     private int memberNo;
-
-    @Column(name="MEMBER_ID")
+    @Column(name="MEMBER_ID", unique = true)
     private String memberId;
     @Column(name="MEMBER_PW")
     private String memberPw;
