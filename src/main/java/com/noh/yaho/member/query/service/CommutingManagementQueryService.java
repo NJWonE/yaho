@@ -2,6 +2,7 @@ package com.noh.yaho.member.query.service;
 
 import com.noh.yaho.member.query.data.CommutingManagementData;
 import com.noh.yaho.member.query.data.WorkTimeData;
+import com.noh.yaho.member.query.dto.CommutingManagementResultDTO;
 import com.noh.yaho.member.query.dto.FindWorkTimeDataDTO;
 import com.noh.yaho.member.query.repository.CommutingManagementDataRepository;
 import lombok.RequiredArgsConstructor;
@@ -46,7 +47,7 @@ public class CommutingManagementQueryService {
 //        return workTimeDataList;
 //    }
 
-    public Object selectCommutingManagement(int memberNo) throws ParseException {
+    public CommutingManagementResultDTO selectCommutingManagement(int memberNo) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         Calendar c1 = Calendar.getInstance();
@@ -54,6 +55,8 @@ public class CommutingManagementQueryService {
         String strToday = sdf.format(c1.getTime());
         Date startDateTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(strToday + " 00:00:00");
         Date endDateTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(strToday + " 23:59:59");
-        return commutingManagementDataRepository.findByMemberNoAndAttendanceTimeBetween(memberNo, startDateTime, endDateTime);
+        List<CommutingManagementData> commutingManagementDataList = commutingManagementDataRepository.findByMemberNoAndAttendanceTimeBetween(memberNo, startDateTime, endDateTime);
+        CommutingManagementResultDTO commutingManagementResultDTO = new CommutingManagementResultDTO(commutingManagementDataList.get(0).getAttendanceTime(), commutingManagementDataList.get(commutingManagementDataList.size()-1).getLeaveTime());
+        return commutingManagementResultDTO;
     }
 }
