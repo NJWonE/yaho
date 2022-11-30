@@ -36,23 +36,23 @@
 - Miro
 - Figma
 ## ✅ 서버 아키텍처
-<img style="border-radius: 10px " src="https://user-images.githubusercontent.com/93060795/204715673-1950be0b-9400-4e25-ba41-be739370c7c0.png">
+<img style="border-radius: 10px" height="300px" src="https://user-images.githubusercontent.com/93060795/204715673-1950be0b-9400-4e25-ba41-be739370c7c0.png">
 
 ## ✅ 기술 융합도
-<img style="border-radius: 10px; height: 200px" src="https://user-images.githubusercontent.com/93060795/204715927-c92c6d6a-8be0-4f42-940d-fe775df0e1e5.png">
+<img style="border-radius: 10px" height="400px" src="https://user-images.githubusercontent.com/93060795/204715927-c92c6d6a-8be0-4f42-940d-fe775df0e1e5.png">
 
 ## ✅ Github flow 브랜치 전략
-<img style="border-radius: 10px;" src="https://user-images.githubusercontent.com/93060795/204716543-2cfa19b7-2041-4fdc-915c-de75dd235638.png">
+<img style="border-radius: 10px" height="300px" src="https://user-images.githubusercontent.com/93060795/204716543-2cfa19b7-2041-4fdc-915c-de75dd235638.png">
 컨벤션을 활용한 브랜치, 커밋 내역 작성  
-[commit](https://github.com/NJWonE/yaho-server/wiki/git-commit-convention-rules)
+commit https://github.com/NJWonE/yaho-server/wiki/git-commit-convention-rules
 
-[branch] (https://github.com/NJWonE/yaho-server/wiki/git-branch-convention-rules)
+branch https://github.com/NJWonE/yaho-server/wiki/git-branch-convention-rules
 마일스톤, 이슈 라벨링을 활용한 형상관리  
-[milestone] (https://github.com/NJWonE/yaho-server/milestones?state=closed)  
-[issue] (https://github.com/NJWonE/yaho-server/issues?q=is%3Aissue+is%3Aclosed)
+milestone https://github.com/NJWonE/yaho-server/milestones?state=closed
+issue https://github.com/NJWonE/yaho-server/issues?q=is%3Aissue+is%3Aclosed
 
 ## ✅ client(unity), AI github address
-[AI] (https://github.com/kgy94329/YAHO)
+AI https://github.com/kgy94329/YAHO
 
 
 
