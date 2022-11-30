@@ -45,12 +45,12 @@
 <img style="border-radius: 10px" height="300px" src="https://user-images.githubusercontent.com/93060795/204716543-2cfa19b7-2041-4fdc-915c-de75dd235638.png">
 컨벤션을 활용한 브랜치, 커밋 내역 작성
 
-commit https://github.com/NJWonE/yaho-server/wiki/git-commit-convention-rules   
-branch https://github.com/NJWonE/yaho-server/wiki/git-branch-convention-rules  
+[commit](https://github.com/NJWonE/yaho-server/wiki/git-commit-convention-rules)  
+[branch](https://github.com/NJWonE/yaho-server/wiki/git-branch-convention-rules)   
 
 마일스톤, 이슈 라벨링을 활용한 형상관리  
-milestone https://github.com/NJWonE/yaho-server/milestones?state=closed  
-issue https://github.com/NJWonE/yaho-server/issues?q=is%3Aissue+is%3Aclosed
+[milestone](https://github.com/NJWonE/yaho-server/milestones?state=closed)  
+[issue](https://github.com/NJWonE/yaho-server/issues?q=is%3Aissue+is%3Aclosed)  
 
 ## ✅ client(unity), AI github address
 AI https://github.com/kgy94329/YAHO
