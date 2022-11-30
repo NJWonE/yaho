@@ -64,9 +64,9 @@ jobs:
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
           aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
-          application_name: yaho
+          application_name: ${{ AWS_EB_APP_NAME }}
           environment_name: ${{ secrets.AWS_EB_APP_NAME }}
-          version_label: yaho-${{steps.current-time.outputs.formattedTime}}
+          version_label: ${{ AWS_EB_APP_NAME }}-${{steps.current-time.outputs.formattedTime}}
           region: ${{ secrets.AWS_DEFAULT_REGION }}
           deployment_package: deploy/deploy.zip
           wait_for_environment_recovery: 200
