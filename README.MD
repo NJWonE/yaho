@@ -67,7 +67,7 @@
 
 ## ✅ client(unity), AI github address
 [unitiy](https://github.com/yelee12/YAHO)  
-[AI](https://github.com/kgy94329/YAHO)  
+[AI](https://github.com/kgy94329/YAHO)
 
 
 
