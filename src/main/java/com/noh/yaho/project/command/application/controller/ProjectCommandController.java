@@ -29,7 +29,9 @@ public class ProjectCommandController {
     @Operation(description = "프로젝트 생성 하기 위해 필요한 값을 전달 받는다.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "500", description = "Server Error")
+            @ApiResponse(responseCode = "400", description = "BAD REQUEST"),
+            @ApiResponse(responseCode = "404", description = "NOT FOUND"),
+            @ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR")
     })
     @Parameters({
             @Parameter(name ="projectName", description = "프로젝트 이름", example = "1분기 프로젝트"),
