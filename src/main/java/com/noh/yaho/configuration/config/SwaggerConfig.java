@@ -10,10 +10,10 @@ import org.springframework.context.annotation.Configuration;
 public class SwaggerConfig {
 
     @Bean
-    public GroupedOpenApi publicAPI(){
+    public GroupedOpenApi projectAPI(){
         return GroupedOpenApi.builder()
                 .group("v1")
-                .pathsToMatch("/projects")
+                .packagesToScan("com.noh.yaho")
                 .build();
     }
     @Bean
