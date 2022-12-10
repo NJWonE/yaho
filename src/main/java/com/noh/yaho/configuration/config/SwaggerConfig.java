@@ -11,9 +11,10 @@ public class SwaggerConfig {
 
     @Bean
     public GroupedOpenApi projectAPI(){
+        String paths[] = {"/projects/**", "/members/**"};
         return GroupedOpenApi.builder()
                 .group("v1")
-                .packagesToScan("com.noh.yaho")
+                .pathsToMatch(paths)
                 .build();
     }
     @Bean
