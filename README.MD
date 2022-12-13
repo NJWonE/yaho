@@ -23,7 +23,7 @@
 #### 주요 데이터 관리
 ## ✅ 기술스택 및 협업툴
 #### 기술 스택
-- Spring Framework
+- Spring Boot
 - Java
 - Jpa
 - PostgreSQL
